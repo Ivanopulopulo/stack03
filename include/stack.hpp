@@ -87,7 +87,7 @@ void stack<T>::print() const
 	if(!empty())
 	{
 	        for (unsigned int i = 0; i < count_; ++i)
-		        srd::cout << array_[i] << " ";
+		        std::cout << array_[i] << " ";
 	        std::cout << std::endl;
 	}
 }
