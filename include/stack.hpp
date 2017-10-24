@@ -14,7 +14,7 @@ public:
 	void push(T const&)/*no safety*/;
 	void pop()/*strong*/;
 	T top()const /*strong*/;
-	void print(std::ostream&stream)const /*strong*/;
+	void print const /*strong*/;
 	void swap(stack<T>&)noexcept;
 	bool empty()const noexcept;
 private:
@@ -82,7 +82,7 @@ T stack<T>::top()const
 	else return array_[count_ - 1];
 }
 template <typename T>
-void stack<T>::print(std::ostream&stream)const 
+void stack<T>::print const 
 {
 	if(!empty())
 	{
