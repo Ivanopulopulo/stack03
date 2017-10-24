@@ -38,7 +38,7 @@ int main()
 		}
 		case '=':
 		{
-					Stack.print(std::cout);
+					Stack.print();
 					break;
 		}
 		defoult: break;
