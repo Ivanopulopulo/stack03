@@ -87,8 +87,8 @@ void stack<T>::print() const
 	if(!empty())
 	{
 	        for (unsigned int i = 0; i < count_; ++i)
-		        stream << array_[i] << " ";
-	        stream << std::endl;
+		        cout << array_[i] << " ";
+	        cout << std::endl;
 	}
 }
 template <typename T>
