@@ -8,10 +8,10 @@ class stack
 public:
 	stack() noexcept;
 	~stack() noexcept;
-	stack(stack<T> const&)/*no safety*/;
-	stack& operator=(stack<T> const&)/*no safety*/;
+	stack(stack<T> const&)/*strong*/;
+	stack& operator=(stack<T> const&)/*strong*/;
 	size_t count()const noexcept;
-	void push(T const&)/*no safety*/;
+	void push(T const&)/*strong*/;
 	void pop()/*strong*/;
 	T top()const /*strong*/;
 	void print() const /*strong*/;
@@ -35,7 +35,15 @@ stack<T>::stack(stack<T> const& other)
 {
 	array_size_ = other.array_size_;
 	count_ = other.count_;	
-	std::copy(other.array_, other.array_ + count_, array_);
+	try
+	{
+	        array_ = new T[array_size_];
+	        std::copy(other.array_, other.array_ + count_, array_);
+	}
+	catch(std::bad_alloc)
+	{
+		std::cerr << "bad_alloc caught" << std::endl;
+	}
 }
 template <typename T>
 stack<T>& stack<T>::operator=(stack<T> const & other)
@@ -59,11 +67,19 @@ void stack<T>::push(T const & value)
 	}
 	else if (array_size_ == count_)
 	{
+		try
+		{
+			
 		array_size_ *= 2;
 		T * new_array = new T[array_size_]();
 		std::copy(array_, array_ + count_, new_array);
 		delete[] array_;
 		array_ = new_array;
+		}
+		catch(std::bad_alloc)
+	        {
+		        std::cerr << "bad_alloc caught" << std::endl;
+	        }
 	}
 	array_[count_++] = value;
 }
