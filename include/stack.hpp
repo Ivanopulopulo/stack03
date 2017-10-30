@@ -32,18 +32,20 @@ stack<T>::~stack()noexcept
 }
 template <typename T>
 stack<T>::stack(stack<T> const& other)
-{
+{	
+	T new_array = new T [other.array_size_];
 	array_size_ = other.array_size_;
 	count_ = other.count_;	
+	array_ = new_array;
 	try
 	{
-	        array_ = new T[array_size_];
-	        std::copy(other.array_, other.array_ + count_, array_);
+		std::copy(other.array_, other.array_ + count_, array_);	
 	}
-	catch(std::bad_alloc)
+	catch( ... )
 	{
-		std::cerr << "bad_alloc caught" << std::endl;
-	}
+		std::cerr << "ERROR!" << std::endl;
+		delete[] array_;
+	}				
 }
 template <typename T>
 stack<T>& stack<T>::operator=(stack<T> const & other)
