@@ -82,6 +82,10 @@ void stack<T>::push(T const & value)
 	        {
 		        std::cerr << "bad_alloc caught" << std::endl;
 	        }
+		catch(...) 
+		{	
+			std::cerr << "ERROR!";
+		}
 	}
 	array_[count_++] = value;
 }
