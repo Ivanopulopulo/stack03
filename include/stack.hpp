@@ -1,7 +1,9 @@
 #include <iostream>
 #include <algorithm>
-#include <stdexcept>
 #include <mutex>
+#include <new>
+#include <memory>
+#include <thread>
 
 template <typename T>
 class stack
@@ -120,6 +122,7 @@ void stack<T>::print() const
 template <typename T>
 void stack<T>::swap(stack<T>& other)noexcept
 {
+	std::lock(mutex_, other.mutex_);
 	std::swap(array_, other.array_);
 	std::swap(array_size_, other.array_size_);
 	std::swap(count_, other.count_);
