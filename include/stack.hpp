@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <mutex>
 
 template <typename T>
 class stack
