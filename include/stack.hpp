@@ -54,7 +54,6 @@ stack<T>::stack(stack<T> const& other)
 template <typename T>
 stack<T>& stack<T>::operator=(stack<T> const & other)
 {
-	std::lock_guard<std::mutex> lock(mutex_);
 	if (&other != this)
 		stack(other).swap(*this);
 	return *this;
